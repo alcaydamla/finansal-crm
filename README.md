@@ -4,8 +4,8 @@ This project is currently under development.
 
 Built with:
 
-- **React.js** for frontend  
-- **.NET & C#** for backend  
-- **Oracle** for database
+- **React.js & TypeScript** for the frontend  
+- **.NET & C#** for the backend  
+- **Oracle** for the database
 
 Stay tuned for updates!
