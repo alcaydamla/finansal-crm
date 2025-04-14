@@ -1,0 +1,11 @@
+/Users/damlaalcay/FinansalCRM/EntityLayer/bin/Debug/net9.0/EntityLayer.deps.json
+/Users/damlaalcay/FinansalCRM/EntityLayer/bin/Debug/net9.0/EntityLayer.dll
+/Users/damlaalcay/FinansalCRM/EntityLayer/bin/Debug/net9.0/EntityLayer.pdb
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.AssemblyInfoInputs.cache
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.AssemblyInfo.cs
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.csproj.CoreCompileInputs.cache
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.dll
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/refint/EntityLayer.dll
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/EntityLayer.pdb
+/Users/damlaalcay/FinansalCRM/EntityLayer/obj/Debug/net9.0/ref/EntityLayer.dll

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "uptPDapj6ARWlQ2IaddUCroXUxvd8z/ssOPV/5BQCG2gutAIcF6P3uH5o3LBUPpL4+suNA7ToBKyG5sfyk/AvQ==",
+  "success": true,
+  "projectFilePath": "/Users/damlaalcay/FinansalCRM/Dto/Dto.csproj",
+  "expectedPackageFiles": [
+    "/Users/damlaalcay/.nuget/packages/microsoft.netcore.app.ref/6.0.11/microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "/Users/damlaalcay/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.11/microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

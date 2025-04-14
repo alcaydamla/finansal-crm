@@ -1,0 +1,15 @@
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.csproj.AssemblyReference.cache
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.AssemblyInfoInputs.cache
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.AssemblyInfo.cs
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.csproj.CoreCompileInputs.cache
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/bin/Debug/net9.0/DataAccessLayer.deps.json
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/bin/Debug/net9.0/DataAccessLayer.dll
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/bin/Debug/net9.0/DataAccessLayer.pdb
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/bin/Debug/net9.0/EntityLayer.dll
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/bin/Debug/net9.0/EntityLayer.pdb
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAcce.E67BD773.Up2Date
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.dll
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/refint/DataAccessLayer.dll
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/DataAccessLayer.pdb
+/Users/damlaalcay/FinansalCRM/DataAccessLayer/obj/Debug/net9.0/ref/DataAccessLayer.dll

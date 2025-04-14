@@ -1,0 +1,12 @@
+/Users/damlaalcay/FinansalCRM/Dto/bin/Debug/net6.0/Dto.deps.json
+/Users/damlaalcay/FinansalCRM/Dto/bin/Debug/net6.0/Dto.dll
+/Users/damlaalcay/FinansalCRM/Dto/bin/Debug/net6.0/Dto.pdb
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.GeneratedMSBuildEditorConfig.editorconfig
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.AssemblyInfoInputs.cache
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.AssemblyInfo.cs
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.csproj.CoreCompileInputs.cache
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.dll
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/refint/Dto.dll
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.pdb
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/ref/Dto.dll
+/Users/damlaalcay/FinansalCRM/Dto/obj/Debug/net6.0/Dto.csproj.AssemblyReference.cache

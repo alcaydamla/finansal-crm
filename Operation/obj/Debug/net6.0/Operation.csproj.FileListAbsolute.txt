@@ -1,0 +1,17 @@
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Operation.deps.json
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Operation.dll
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Operation.pdb
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Dto.dll
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Entity.dll
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Entity.pdb
+/Users/damlaalcay/FinansalCRM/Operation/bin/Debug/net6.0/Dto.pdb
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.csproj.AssemblyReference.cache
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.GeneratedMSBuildEditorConfig.editorconfig
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.AssemblyInfoInputs.cache
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.AssemblyInfo.cs
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.csproj.CoreCompileInputs.cache
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.dll
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/refint/Operation.dll
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.pdb
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/ref/Operation.dll
+/Users/damlaalcay/FinansalCRM/Operation/obj/Debug/net6.0/Operation.csproj.CopyComplete
