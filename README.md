@@ -39,5 +39,5 @@ npm install
 npm run dev
 
 # backend
-# Visual Studio ile aç → Wall projesini çalıştır (Ctrl+F5)
+# Visual Studio code ile aç → Wall projesini çalıştır (Ctrl+F5)
 
