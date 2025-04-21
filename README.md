@@ -29,6 +29,13 @@ Finansal CRM, müşteri ve işlem (transaction) yönetimini kolaylaştırmak ama
 - SQL + PL/SQL
 - Stored Procedures ve View kullanımı
 
+📸 Uygulama Ekran Görüntüleri
+- Ana Sayfa
+- Müşteri Listesi
+- İşlem Listesi
+- İşlem Güncelleme Sayfası
+- Müşteri Detay Sayfası
+
 
 ## Kurulum
 
