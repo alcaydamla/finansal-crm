@@ -29,5 +29,15 @@ Finansal CRM, müşteri ve işlem (transaction) yönetimini kolaylaştırmak ama
 - SQL + PL/SQL
 - Stored Procedures ve View kullanımı
 
-## Proje Yapısı
+
+## Kurulum
+
+```bash
+# frontend
+cd Frontend
+npm install
+npm run dev
+
+# backend
+# Visual Studio ile aç → Wall projesini çalıştır (Ctrl+F5)
 
