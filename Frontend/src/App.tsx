@@ -4,7 +4,9 @@ import CustomersPage from './pages/CustomersPage';
 import TransactionsPage from './pages/TransactionsPage';
 import AddCustomerForm from './pages/AddCustomerForm'; 
 import AddTransactionPage from './pages/AddTransactionPage'; 
-import CustomerDebt from './pages/CustomerDebt';
+import CustomerTransactions from './pages/CustomerTransactions';
+import CustomerDetail from './pages/CustomerDetail';
+
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
         <Route path="/transactions" element={<TransactionsPage />} />
         <Route path="/add-customer" element={<AddCustomerForm />} /> 
         <Route path="/add-transaction" element={<AddTransactionPage />} />
-        <Route path="/borc/:id" element={<CustomerDebt />} />
-
+        <Route path="/musteri/:id/islemler" element={<CustomerTransactions />} />
+        <Route path="/customer/:id" element={<CustomerDetail />} />
 
       </Routes>
     </>

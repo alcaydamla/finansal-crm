@@ -13,72 +13,62 @@ namespace Entity
                      (ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))
                      (CONNECT_DATA=(SERVICE_NAME=ORCLPDB1)))";
 
-
-
         public decimal GetBalance(int customerId)
         {
-            decimal balance = 0;
+            using var conn = new OracleConnection(connStr);
+            conn.Open();
 
-            using (var conn = new OracleConnection(connStr))
+            var cmd = new OracleCommand("sel_GetCustomerBalanceSp", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("p_customer_id", OracleDbType.Int32).Value = customerId;
+
+            var output = new OracleParameter("p_balance", OracleDbType.Decimal)
             {
-                conn.Open();
+                Direction = ParameterDirection.Output
+            };
+            cmd.Parameters.Add(output);
 
-                var cmd = new OracleCommand("sel_GetCustomerBalanceSp", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
 
-                cmd.Parameters.Add("p_customer_id", OracleDbType.Int32).Value = customerId;
-
-                var output = new OracleParameter("p_balance", OracleDbType.Decimal)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(output);
-
-                cmd.ExecuteNonQuery();
-                balance = ((Oracle.ManagedDataAccess.Types.OracleDecimal)output.Value).Value;
-
-            }
-
-            return balance;
+            return ((Oracle.ManagedDataAccess.Types.OracleDecimal)output.Value).Value;
         }
+
 
         public void AddCustomer(dCustomer customer)
         {
             using var conn = new OracleConnection(connStr);
             conn.Open();
 
-            using var transaction = conn.BeginTransaction();
             try
             {
-                var cmd = new OracleCommand("INSERT INTO CUSTOMERS (CUSTOMER_ID, FIRST_NAME, LAST_NAME, TYPE) VALUES (:id, :fname, :lname, :type)", conn);
-                cmd.Transaction = transaction;
+                var cmd = new OracleCommand("INSERT_CUSTOMERSP", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("id", customer.CustomerId);
-                cmd.Parameters.Add("fname", customer.FirstName);
-                cmd.Parameters.Add("lname", customer.LastName);
-                cmd.Parameters.Add("type", customer.Type);
+                cmd.Parameters.Add("p_customerid", OracleDbType.Int32).Value = customer.CustomerId;
+                cmd.Parameters.Add("p_firstName", OracleDbType.Varchar2).Value = customer.FirstName;
+                cmd.Parameters.Add("p_lastName", OracleDbType.Varchar2).Value = customer.LastName;
+                cmd.Parameters.Add("p_type", OracleDbType.Varchar2).Value = customer.Type;
 
                 cmd.ExecuteNonQuery();
-                transaction.Commit();
-                Console.WriteLine("Müşteri eklendi ve commit edildi.");
+                Console.WriteLine("Müşteri SP ile eklendi.");
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
-                Console.WriteLine("HATA: " + ex.Message);
+                Console.WriteLine("SP ile müşteri eklenemedi: " + ex.Message);
                 throw;
             }
         }
-
-
 
         public void Delete(int id)
         {
             using var conn = new OracleConnection(connStr);
             conn.Open();
 
-            var cmd = new OracleCommand("DELETE FROM CUSTOMERS WHERE CUSTOMER_ID = :id", conn);
-            cmd.Parameters.Add("id", id);
+            var cmd = new OracleCommand("DELETE_CUSTOMERSP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("p_customerid", OracleDbType.Int32).Value = id;
             cmd.ExecuteNonQuery();
         }
 
@@ -87,11 +77,14 @@ namespace Entity
             using var conn = new OracleConnection(connStr);
             conn.Open();
 
-            var cmd = new OracleCommand("UPDATE CUSTOMERS SET FIRST_NAME = :fname, LAST_NAME = :lname, TYPE = :type WHERE CUSTOMER_ID = :id", conn);
-            cmd.Parameters.Add("fname", c.FirstName);
-            cmd.Parameters.Add("lname", c.LastName);
-            cmd.Parameters.Add("type", c.Type);
-            cmd.Parameters.Add("id", c.CustomerId);
+            var cmd = new OracleCommand("UPDATE_CUSTOMERSP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("p_customerid", OracleDbType.Int32).Value = c.CustomerId;
+            cmd.Parameters.Add("p_firstname", OracleDbType.Varchar2).Value = c.FirstName;
+            cmd.Parameters.Add("p_lastname", OracleDbType.Varchar2).Value = c.LastName;
+            cmd.Parameters.Add("p_type", OracleDbType.Varchar2).Value = c.Type;
+
             cmd.ExecuteNonQuery();
         }
 
@@ -101,50 +94,58 @@ namespace Entity
             using var conn = new OracleConnection(connStr);
             conn.Open();
 
-            var cmd = new OracleCommand("SELECT * FROM CUSTOMERS WHERE CUSTOMER_ID = :id", conn);
-            cmd.Parameters.Add("id", id);
+            var cmd = new OracleCommand("SELECT_CUSTOMER_GETBYIDSP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            using (var reader = cmd.ExecuteReader())
+            cmd.Parameters.Add("p_customerid", OracleDbType.Int32).Value = id;
+
+            var p_firstname = cmd.Parameters.Add("p_firstname", OracleDbType.Varchar2, 50);
+            p_firstname.Direction = ParameterDirection.Output;
+
+            var p_lastname = cmd.Parameters.Add("p_lastname", OracleDbType.Varchar2, 50);
+            p_lastname.Direction = ParameterDirection.Output;
+
+            var p_type = cmd.Parameters.Add("p_type", OracleDbType.Varchar2, 50);
+            p_type.Direction = ParameterDirection.Output;
+
+            cmd.ExecuteNonQuery();
+
+            return new dCustomer
             {
-                if (reader.Read())
-                {
-                    customer.CustomerId = Convert.ToInt32(reader["CUSTOMER_ID"]);
-                    customer.FirstName = reader["FIRST_NAME"].ToString();
-                    customer.LastName = reader["LAST_NAME"].ToString();
-                    customer.Type = reader["TYPE"].ToString();
-                }
-            }
-
-            return customer;
+                CustomerId = id,
+                FirstName = p_firstname.Value?.ToString(),
+                LastName = p_lastname.Value?.ToString(),
+                Type = p_type.Value?.ToString()
+            };
         }
 
         public List<dCustomer> GetAll()
         {
-            List<dCustomer> customers = new List<dCustomer>();
+            var customers = new List<dCustomer>();
 
-            using (OracleConnection conn = new OracleConnection(connStr))
+            using var conn = new OracleConnection(connStr);
+            conn.Open();
+
+            var cmd = new OracleCommand("SELECT_ALLCUSTOMERSP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var p_cursor = cmd.Parameters.Add("p_customers", OracleDbType.RefCursor);
+            p_cursor.Direction = ParameterDirection.Output;
+
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
-                conn.Open();
-                OracleCommand cmd = new OracleCommand("SELECT * FROM CUSTOMERS", conn);
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                customers.Add(new dCustomer
                 {
-                    customers.Add(new dCustomer
-                    {
-                        CustomerId = Convert.ToInt32(reader["CUSTOMER_ID"]),
-                        FirstName = reader["FIRST_NAME"].ToString(),
-                        LastName = reader["LAST_NAME"].ToString(),
-                        Type = reader["TYPE"].ToString()
-                    });
-                }
-
-                return customers;
+                    CustomerId = Convert.ToInt32(reader["CUSTOMER_ID"]),
+                    FirstName = reader["FIRST_NAME"].ToString(),
+                    LastName = reader["LAST_NAME"].ToString(),
+                    Type = reader["TYPE"].ToString()
+                });
             }
+            return customers;
         }
-
-
-
     }
 
 }

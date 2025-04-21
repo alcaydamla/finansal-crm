@@ -9,6 +9,31 @@ namespace Wall
     public class aTransactionController : ControllerBase
     {
         private readonly oTransactionManager transactionManager = new oTransactionManager();
+        private readonly oCustomerManager customerManager = new oCustomerManager();
+
+        [HttpGet("dashboard-summary")]
+        public IActionResult GetDashboardSummary()
+        {
+            var customerCount = customerManager.GetAllCustomers().Count;
+
+            var transactions = transactionManager.GetAllTransactions();
+            var totalDebt = transactions.Where(t => t.Type == "Debt").Sum(t => t.Amount);
+            var totalPayment = transactions.Where(t => t.Type == "Payment").Sum(t => t.Amount);
+            var paymentRatio = totalDebt > 0 ? (totalPayment / totalDebt) * 100 : 0;
+            var latestPaymentDate = transactions
+                .Where(t => t.Type == "Payment")
+                .OrderByDescending(t => t.TransactionDate)
+                .FirstOrDefault()?.TransactionDate;
+
+            return Ok(new
+            {
+                customerCount,
+                totalDebt,
+                totalPayment,
+                paymentRatio,
+                latestPaymentDate
+            });
+        }
 
         [HttpPost]
         public string AddTransaction([FromBody] dTransaction transaction)
@@ -37,11 +62,11 @@ namespace Wall
             return transactionManager.GetAllTransactions();
         }
 
-
-        [HttpGet("{id}")]
-        public dTransaction GetById(int id)
+        [HttpGet("byCustomer/{customerId:int}")]
+        public IActionResult GetTransactionsByCustomerId(int customerId)
         {
-            return transactionManager.GetTransactionById(id);
+            var transactions = transactionManager.GetTransactionsByCustomerId(customerId);
+            return Ok(transactions);
         }
 
         [HttpGet("customer/{customerId}/debts")]
@@ -62,7 +87,17 @@ namespace Wall
             return Ok(transaction);
         }
 
+        [HttpPut("update-status")]
+        public IActionResult UpdateTransactionStatus([FromBody] dTransaction dto)
+        {
+            transactionManager.UpdateTransactionStatus(dto.TransactionId, dto.Type, dto.Amount);
+            return Ok(new { message = "İşlem güncellendi." });
+        }
 
-
+        [HttpGet("{id:int}")]
+        public dTransaction GetById(int id)
+        {
+            return transactionManager.GetTransactionById(id);
+        }
     }
 }

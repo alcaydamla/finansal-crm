@@ -9,6 +9,8 @@ const { Option } = Select;
 const AddCustomerForm: React.FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const currentDate = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
 
   const handleSubmit = async (values: any) => {
     try {
@@ -33,7 +35,10 @@ const AddCustomerForm: React.FC = () => {
         <Form.Item
           label="Müşteri ID"
           name="customerId"
-          rules={[{ required: true, message: 'Müşteri ID giriniz!' }]}
+          rules={[
+            { required: true, message: 'Müşteri ID giriniz!' },
+            { type: 'number', transform: value => Number(value), message: 'Sayı olmalı!' }
+          ]}
         >
           <Input type="number" placeholder="Örn: 101" />
         </Form.Item>

@@ -7,7 +7,6 @@ const AddTransaction: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Burada API'ye verileri gönderebilirsiniz
     console.log({ customerId, amount, transactionType });
   };
 

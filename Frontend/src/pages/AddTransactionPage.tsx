@@ -7,7 +7,11 @@ const { Title } = Typography;
 const AddTransactionPage: React.FC = () => {
   return (
     <div style={{ padding: '30px' }}>
-      <Card title={<Title level={3}>📌 Yeni İşlem Ekle</Title>} bordered={false}>
+      <Card
+        title={<Title level={3}>📌 Yeni İşlem Ekle</Title>}
+        bordered={false}
+        style={{ maxWidth: 600, margin: '40px auto' }}
+      >
         <AddTransactionForm />
       </Card>
     </div>

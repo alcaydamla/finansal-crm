@@ -38,6 +38,7 @@ namespace Operation
             return dal.GetAll();
         }
 
+
     }
 }
 

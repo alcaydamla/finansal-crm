@@ -7,4 +7,6 @@ public class dTransaction
     public decimal Amount { get; set; }
     public string Type { get; set; }
     public DateTime TransactionDate { get; set; }
+    public int Status { get; set; }
+
 }

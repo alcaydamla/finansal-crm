@@ -70,5 +70,6 @@ namespace Wall
                 return $"Bakiye alınamadı: {ex.Message}";
             }
         }
+
     }
 }

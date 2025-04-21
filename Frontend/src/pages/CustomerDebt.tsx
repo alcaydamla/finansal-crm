@@ -1,36 +1,74 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Table, Typography } from 'antd';
+import { Table, Typography, Spin, message } from 'antd';
 
 const { Title } = Typography;
 
+interface Transaction {
+  transactionId: number;
+  amount: number;
+  transactionDate: string;
+  type: string;
+}
+
 const CustomerDebt: React.FC = () => {
   const { id } = useParams();
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:5290/api/aCustomer/${id}/transactions`)
-      .then(res => {
-        // Sadece borç olanları filtrele
-        const debts = res.data.filter((t: any) => t.type === 'Debt');
-        setTransactions(debts);
+    setLoading(true);
+
+    axios
+      .get(`http://localhost:5290/api/aTransaction/customer/${id}/debts`)
+      .then((response) => {
+        console.log("Gelen borçlar:", response.data);
+        setTransactions(response.data);
       })
-      .catch(err => console.error(err));
+      .catch((error) => {
+        console.error("Hata oluştu:", error);
+        message.error("Veri alınırken bir hata oluştu.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   const columns = [
-    { title: 'ID', dataIndex: 'transactionId', key: 'transactionId' },
-    { title: 'Tutar', dataIndex: 'amount', key: 'amount' },
-    { title: 'Tarih', dataIndex: 'transactionDate', key: 'transactionDate' },
+    {
+      title: 'ID',
+      dataIndex: 'transactionId',
+      key: 'transactionId',
+    },
+    {
+      title: 'Tutar',
+      dataIndex: 'amount',
+      key: 'amount',
+    },
+    {
+      title: 'Tarih',
+      dataIndex: 'transactionDate',
+      key: 'transactionDate',
+      render: (date: string) => new Date(date).toLocaleDateString('tr-TR'), // Türkçe tarih
+    },
   ];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '24px' }}>
       <Title level={3}>Müşteri Borçları</Title>
-      <Table dataSource={transactions} columns={columns} rowKey="transactionId" />
+      {loading ? (
+        <Spin size="large" />
+      ) : (
+        <Table
+          dataSource={transactions}
+          columns={columns}
+          rowKey="transactionId"
+        />
+      )}
     </div>
   );
 };
 
 export default CustomerDebt;
+ */

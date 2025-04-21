@@ -27,16 +27,27 @@ namespace Operation
             return transactionDal.GetAll();
         }
 
-        public List<dTransaction> GetTransactionsByCustomerId(int customerId)
-        {
-            return transactionDal.GetAll()
-                .Where(t => t.CustomerId == customerId)
-                .ToList();
-        }
-
         public dTransaction GetTransaction(int id)
         {
-            return transactionDal.GetTransaction(id); // ✅ id parametresi verildi
+            return transactionDal.GetTransactionById(id);
+        }
+        public void UpdateTransactionStatus(int transactionId, string type, decimal amount)
+        {
+            transactionDal.UpdateTransactionStatus(transactionId, type, amount);
+        }
+
+        public List<dTransaction> GetTransactionsByCustomerId(int customerId)
+        {
+            var entities = transactionDal.GetByCustomerId(customerId);
+
+            return entities.Select(t => new dTransaction
+            {
+                TransactionId = t.TransactionId,
+                CustomerId = t.CustomerId,
+                Amount = t.Amount,
+                Type = t.Type,
+                TransactionDate = t.TransactionDate
+            }).ToList();
         }
 
 
