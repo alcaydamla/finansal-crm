@@ -20,7 +20,7 @@ Finansal CRM, müşteri ve işlem (transaction) yönetimini kolaylaştırmak ama
 - Axios, FileSaver, XLSX
 
 ### Backend
-- ASP.NET Core Web API (C#)
+- .NET Web API (C#)
 - Katmanlı mimari: DTO, Entity, Operation, Controller
 - Stored Procedure destekli Oracle bağlantısı
 
