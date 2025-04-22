@@ -47,4 +47,3 @@ npm run dev
 
 # backend
 # Visual Studio code ile aç → Wall projesini çalıştır (Ctrl+F5)
-
